@@ -1,6 +1,14 @@
 <resources>
-    <string name="app_name">ΞtheRemote</string>
+    <string name="app_name">ΞtheRemotΞ</string>
 
     <string name="action_settings">Settings</string>
-    <string name="connection_help">Start e.g. via eth -b -j --json-rpc-port 8079 </string>
+    <string name="connection_help" formatted="false"><![CDATA[
+    Start e.g. via `eth -b -j --json-rpc-port 8079`
+    <br/><br/>
+    You can either do this on a PC or a <a href="https://blog.ethereum.org/2015/05/14/announcing-e%CF%80-ethereum-on-raspberry-pi-programme/">Ξπ: Ξthereum on Raspberry Pi</a> Or if you want to run it on this mobile you might be able compile the c++ version via the <a href="https://developer.android.com/tools/sdk/ndk">Android NDK</a> or the go version <a href="https://godoc.org/golang.org/x/mobile/app"> this way</a>.
+    You just need the cli versions - as mist or alethzero might have nasty dependencies like QT <br/> <a href="http://ligi.de">Contact me</a> when you have a solution so I can link it from here or even better <a href="https://github.com/ligi/Etheremote">send a PullRequest</a>
+    <br/><br/>
+    If you wonder what this is all about you might read <a href="https://github.com/ethereum/wiki/wiki/White-Paper">the white-paper</a> or <a href="https://www.youtube.com/watch?v=97ufCT6lQcY">watch this TED talk</a> and dig deeper later
+    ]]>
+    </string>
 </resources>
