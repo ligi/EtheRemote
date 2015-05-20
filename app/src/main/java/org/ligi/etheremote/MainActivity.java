@@ -1,9 +1,8 @@
 package org.ligi.etheremote;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -15,11 +14,10 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 import java.io.IOException;
-import java.util.Random;
 import org.jetbrains.annotations.NotNull;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     @InjectView(R.id.currentBlock)
     TextView textView;
@@ -58,5 +56,7 @@ public class MainActivity extends Activity {
             }
         }).start();
 
+
+        startActivity(new Intent(this,ConnectionSettingsActivity.class));
     }
 }
