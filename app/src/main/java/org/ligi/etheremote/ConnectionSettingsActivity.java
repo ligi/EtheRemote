@@ -18,7 +18,7 @@ import java.io.IOException;
 import org.jetbrains.annotations.NotNull;
 
 
-public class ConnectionSettingsActivity extends AppCompatActivity {
+public class ConnectionSettingsActivity extends EtheremoteActivity {
 
     @InjectView(R.id.help)
     TextView textView;

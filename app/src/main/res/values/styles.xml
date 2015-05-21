@@ -3,6 +3,20 @@
     <style name="AppTheme" parent="Base.Theme.AppCompat">
         <item name="colorPrimary">#565c74</item>
         <item name="colorPrimaryDark">#484a56</item>
+        <item name="android:windowAnimationStyle">@null</item>
     </style>
 
+    <style name="drawer_button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">24dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/clickable_bg</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <color name="colorPrimary">#565c74</color>
 </resources>

@@ -17,7 +17,7 @@ import java.io.IOException;
 import org.jetbrains.annotations.NotNull;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends EtheremoteActivity {
 
     @InjectView(R.id.currentBlock)
     TextView textView;
@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         }).start();
 
 
-        startActivity(new Intent(this,ConnectionSettingsActivity.class));
+        if (App.getSettings().getOnboardingState()==Settings.ONBOARDING_NONE) {
+            startActivity(new Intent(this,ConnectionSettingsActivity.class));
+            App.getSettings().setOnboardingState(Settings.ONBOARDING_SETTINGS);
+        }
     }
 }

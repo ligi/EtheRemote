@@ -11,4 +11,6 @@
     If you wonder what this is all about you might read <a href="https://github.com/ethereum/wiki/wiki/White-Paper">the white-paper</a> or <a href="https://www.youtube.com/watch?v=97ufCT6lQcY">watch this TED talk</a> and dig deeper later
     ]]>
     </string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">closed</string>
 </resources>

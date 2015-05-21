@@ -1,0 +1,32 @@
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/drawer_settings"
+            android:text="SΞttings"
+
+            android:drawableLeft="@drawable/ic_action_settings"
+            style="@style/drawer_button"/>
+
+    <TextView
+            android:id="@+id/drawer_stats"
+            android:text="Stats"
+            android:drawableLeft="@drawable/ic_action_trending_up"
+            style="@style/drawer_button"
+            />
+
+
+    <TextView style="@style/drawer_button"
+              android:text="WALLΞT"
+              android:drawableLeft="@drawable/ic_action_credit_card"
+            />
+    <View android:layout_width="match_parent" android:layout_height="0dip"
+          android:layout_weight="1"/>
+
+    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:src="@drawable/ic_launcher"/>
+</LinearLayout>
