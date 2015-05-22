@@ -1,27 +1,41 @@
 package org.ligi.etheremote;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import com.github.arteam.simplejsonrpc.client.JsonRpcClient;
-import com.github.arteam.simplejsonrpc.client.Transport;
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
-import java.io.IOException;
-import org.jetbrains.annotations.NotNull;
+import butterknife.OnTextChanged;
 
 
 public class ConnectionSettingsActivity extends EtheremoteActivity {
 
+    private Settings settings;
+
     @InjectView(R.id.help)
     TextView textView;
+
+    @InjectView(R.id.host)
+    TextView host;
+
+    @InjectView(R.id.port)
+    TextView port;
+
+
+    @OnTextChanged(R.id.port)
+    void portChange() {
+        try {
+            settings.setPort(Integer.parseInt(port.getText().toString()));
+        } catch (NumberFormatException ignored) {
+        }
+    }
+
+
+    @OnTextChanged(R.id.host)
+    void hostChange() {
+        settings.setHost(host.getText().toString());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,5 +46,11 @@ public class ConnectionSettingsActivity extends EtheremoteActivity {
 
         textView.setText(Html.fromHtml(getText(R.string.connection_help).toString()));
         textView.setMovementMethod(new LinkMovementMethod());
+
+        settings = App.getSettings();
+
+        host.setText(String.valueOf(settings.getHost()));
+        port.setText(settings.getHost());
     }
+
 }

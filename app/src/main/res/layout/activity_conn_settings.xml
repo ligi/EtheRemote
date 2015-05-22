@@ -13,12 +13,16 @@
 
     <EditText android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="192.168."
+              android:id="@+id/host"
+              android:hint="host"
+              android:inputType="number"
             />
 
     <EditText android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="8079"
+              android:id="@+id/port"
+              android:hint="port"
+              android:inputType="number"
             />
 
     <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
