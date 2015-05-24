@@ -49,8 +49,8 @@ public class ConnectionSettingsActivity extends EtheremoteActivity {
 
         settings = App.getSettings();
 
-        host.setText(String.valueOf(settings.getHost()));
-        port.setText(settings.getHost());
+        host.setText(settings.getHost());
+        port.setText(String.valueOf(settings.getPort()));
     }
 
 }
