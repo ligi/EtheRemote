@@ -8,6 +8,7 @@ import com.squareup.okhttp.Request
 import com.squareup.okhttp.RequestBody
 import com.squareup.okhttp.Response
 import java.io.IOException
+import java.math.BigInteger
 
 public class EthereumCommunicator {
 
@@ -33,14 +34,25 @@ public class EthereumCommunicator {
     private fun getIntegerFromMethod(eth_blockNumber: String): Int? {
         try {
             val res = getStringFromMethod<String?>(eth_blockNumber)
-            if (res!!.startsWith("0x"))
-                return Integer.parseInt(res.replace("0x", ""), 16)
-            else
-                return Integer.parseInt(res)
+            return parseStringToInt(res)
         } catch (e: Exception) {
             return null
         }
 
+    }
+
+    private fun parseStringToInt(res: String?): Int {
+        if (res!!.startsWith("0x"))
+            return Integer.parseInt(res.replace("0x", ""), 16)
+        else
+            return Integer.parseInt(res)
+    }
+
+    private fun parseStringToBigInt(res: String?): BigInteger {
+        if (res!!.startsWith("0x"))
+            return BigInteger(res.replace("0x", ""), 16)
+        else
+            return BigInteger(res.replace("0x", ""))
     }
 
 
@@ -77,6 +89,10 @@ public class EthereumCommunicator {
 
     public fun getAccounts(): List<String>? {
         return getStringFromMethod("eth_accounts")
+    }
+
+    fun getBalance(account: String): BigInteger {
+        return parseStringToBigInt(rpcClient.createRequest().method("eth_getBalance").params(account,"latest").id(1).execute() as String)
     }
 
 }
