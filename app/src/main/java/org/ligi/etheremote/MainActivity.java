@@ -20,6 +20,8 @@ public class MainActivity extends EtheremoteActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setTitle(R.string.title_stats);
+
         if (App.getSettings().getOnboardingState() == Settings.ONBOARDING_NONE) {
             startActivity(new Intent(this, ConnectionSettingsActivity.class));
             App.getSettings().setOnboardingState(Settings.ONBOARDING_SETTINGS);

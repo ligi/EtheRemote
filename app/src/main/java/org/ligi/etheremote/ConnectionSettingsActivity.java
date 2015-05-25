@@ -42,6 +42,8 @@ public class ConnectionSettingsActivity extends EtheremoteActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conn_settings);
 
+        setTitle(R.string.title_settings);
+
         ButterKnife.inject(this);
 
         textView.setText(Html.fromHtml(getText(R.string.connection_help).toString()));

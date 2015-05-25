@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">ΞtheRemotΞ</string>
 
+    <string name="title_stats">theRemotΞ Stats</string>
+    <string name="title_settings">theRemotΞ SΞttings</string>
+
     <string name="action_settings">Settings</string>
     <string name="connection_help" formatted="false"><![CDATA[
     Start e.g. via `eth -b -j --json-rpc-port 8079`
