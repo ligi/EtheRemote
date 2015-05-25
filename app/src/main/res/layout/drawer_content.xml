@@ -19,9 +19,11 @@
             />
 
 
-    <TextView style="@style/drawer_button"
-              android:text="WALLΞT"
-              android:drawableLeft="@drawable/ic_action_credit_card"
+    <TextView
+            android:id="@+id/drawer_wallet"
+            style="@style/drawer_button"
+            android:text="WALLΞT"
+            android:drawableLeft="@drawable/ic_action_credit_card"
             />
     <View android:layout_width="match_parent" android:layout_height="0dip"
           android:layout_weight="1"/>

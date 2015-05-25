@@ -32,7 +32,7 @@ public class EthereumCommunicator {
 
     private fun getIntegerFromMethod(eth_blockNumber: String): Int? {
         try {
-            val res = getStringFromMethod(eth_blockNumber)
+            val res = getStringFromMethod<String?>(eth_blockNumber)
             if (res!!.startsWith("0x"))
                 return Integer.parseInt(res.replace("0x", ""), 16)
             else
@@ -44,9 +44,10 @@ public class EthereumCommunicator {
     }
 
 
-    private fun getStringFromMethod(eth_blockNumber: String): String? {
+    private fun <T> getStringFromMethod(eth_blockNumber: String): T? {
         try {
-            return rpcClient.createRequest().method(eth_blockNumber).id(1).execute().toString()
+            val any = rpcClient.createRequest().method(eth_blockNumber).id(1).execute()
+            return any as T;
         } catch (e: Exception) {
             return null
         }
@@ -67,6 +68,15 @@ public class EthereumCommunicator {
     }
 
     public fun isMining(): Boolean? {
-        return getStringFromMethod("eth_mining") == "true"
+        return getStringFromMethod("eth_mining")
     }
+
+    public fun getHashRate(): Int? {
+        return getIntegerFromMethod("eth_hashrate")
+    }
+
+    public fun getAccounts(): List<String>? {
+        return getStringFromMethod("eth_accounts")
+    }
+
 }

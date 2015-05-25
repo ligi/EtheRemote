@@ -13,21 +13,26 @@ public class DrawerActions {
 
     @OnClick(R.id.drawer_stats)
     void statsClick() {
-        ctx.startActivity(new Intent(ctx,MainActivity.class));
+        ctx.startActivity(new Intent(ctx, MainActivity.class));
+    }
+
+    @OnClick(R.id.drawer_wallet)
+    void walletClick() {
+        ctx.startActivity(new Intent(ctx, WalletActivity.class));
     }
 
     @OnClick(R.id.drawer_settings)
     void settingsClick() {
-        ctx.startActivity(new Intent(ctx,ConnectionSettingsActivity.class));
+        ctx.startActivity(new Intent(ctx, ConnectionSettingsActivity.class));
     }
 
 
     public DrawerActions(ViewGroup root) {
-        ctx=root.getContext();
-        rootView=root;
+        ctx = root.getContext();
+        rootView = root;
     }
 
     public void bind() {
-        ButterKnife.inject(this,rootView);
+        ButterKnife.inject(this, rootView);
     }
 }

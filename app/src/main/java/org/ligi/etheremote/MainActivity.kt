@@ -15,6 +15,7 @@ public class MainActivity : EtheremoteActivity() {
     var peerCountTV: TextView? = null
     var ethVersionTV: TextView? = null
     var isMiningTV: TextView? = null
+    var hashRateTV: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +33,7 @@ public class MainActivity : EtheremoteActivity() {
             peerCountTV = textView()
             blockNumberTV = textView()
             isMiningTV = textView()
+            hashRateTV = textView()
             ethVersionTV = textView()
         }.setPadding(dip(8),dip(8),dip(8),dip(8))
 
@@ -44,14 +46,15 @@ public class MainActivity : EtheremoteActivity() {
                         val peerCount = App.getCommunicator().getPeerCount()
                         val ethVersion = App.getCommunicator().getEthVersion()
                         val isMining = App.getCommunicator().isMining()
+                        val hashRate = App.getCommunicator().getHashRate()
 
                         runOnUiThread(object : Runnable {
                             override fun run() {
-                                blockNumberTV!!.setText("Block #" + blockNumber)
-                                peerCountTV!!.setText("Peers: " + peerCount)
-                                ethVersionTV!!.setText("EthVersion: " + ethVersion)
-                                isMiningTV!!.setText("isMining" + isMining)
-
+                                blockNumberTV!!.setText("Block #${blockNumber}")
+                                peerCountTV!!.setText("Peers: ${peerCount}")
+                                ethVersionTV!!.setText("EthVersion: ${ethVersion}")
+                                isMiningTV!!.setText("isMining: ${isMining}")
+                                hashRateTV!!.setText("hashRate: ${hashRate} Hashes/s")
                             }
                         })
                         Thread.sleep(300)
