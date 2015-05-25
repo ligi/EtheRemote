@@ -3,7 +3,6 @@ package org.ligi.etheremote
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
-import butterknife.ButterKnife
 import org.jetbrains.anko.dip
 import org.jetbrains.anko.textView
 import org.jetbrains.anko.verticalLayout
@@ -30,36 +29,42 @@ public class StatsActivity : EtheremoteActivity() {
         }
 
         verticalLayout() {
+            blockNumberTV = textView("No Data yet")
             peerCountTV = textView()
-            blockNumberTV = textView()
             isMiningTV = textView()
             hashRateTV = textView()
             ethVersionTV = textView()
-        }.setPadding(dip(8),dip(8),dip(8),dip(8))
+        }.setPadding(dip(8), dip(8), dip(8), dip(8))
 
         Thread(object : Runnable {
             override fun run() {
 
                 while (true) {
                     try {
-                        val blockNumber = App.getCommunicator().getBlockNumber()!!
-                        val peerCount = App.getCommunicator().getPeerCount()
-                        val ethVersion = App.getCommunicator().getEthVersion()
-                        val isMining = App.getCommunicator().isMining()
-                        val hashRate = App.getCommunicator().getHashRate()
+                        val blockNumber = App.getCommunicator().getBlockNumber()
 
-                        runOnUiThread(object : Runnable {
-                            override fun run() {
+                        if (blockNumber == null) {
+                            runOnUiThread {
+                                blockNumberTV!!.setText("cannot connect");
+                            }
+                        } else {
+                            val peerCount = App.getCommunicator().getPeerCount()
+                            val ethVersion = App.getCommunicator().getEthVersion()
+                            val isMining = App.getCommunicator().isMining()
+                            val hashRate = App.getCommunicator().getHashRate()
+
+                            runOnUiThread {
                                 blockNumberTV!!.setText("Block #${blockNumber}")
                                 peerCountTV!!.setText("Peers: ${peerCount}")
                                 ethVersionTV!!.setText("EthVersion: ${ethVersion}")
                                 isMiningTV!!.setText("isMining: ${isMining}")
                                 hashRateTV!!.setText("hashRate: ${hashRate} Hashes/s")
                             }
-                        })
-                        Thread.sleep(300)
+                        }
+
                     } catch (e: Exception) {
                     }
+                    Thread.sleep(300);
 
                 }
             }
