@@ -35,12 +35,21 @@ public class EthereumCommunicator {
     }
 
 
-
     @Nullable
     private Integer getIntegerFromMethod(final String eth_blockNumber) {
         try {
-            String res=rpcClient.createRequest().method(eth_blockNumber).id(1).execute().toString();
+            String res =getStringFromMethod(eth_blockNumber);
             return Integer.parseInt(res.replace("0x", ""), 16);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
+    @Nullable
+    private String getStringFromMethod(final String eth_blockNumber) {
+        try {
+            return rpcClient.createRequest().method(eth_blockNumber).id(1).execute().toString();
         } catch (Exception e) {
             return null;
         }
@@ -54,5 +63,17 @@ public class EthereumCommunicator {
     @Nullable
     public Integer getPeerCount() {
         return getIntegerFromMethod("net_peerCount");
+    }
+
+
+    @Nullable
+    public String getEthVersion() {
+        return getStringFromMethod("eth_protocolVersion");
+    }
+
+
+    @Nullable
+    public boolean isMining() {
+        return getStringFromMethod("eth_protocolVersion").equals("true");
     }
 }
