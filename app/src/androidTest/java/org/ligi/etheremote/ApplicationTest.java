@@ -3,11 +3,31 @@ package org.ligi.etheremote;
 import android.app.Application;
 import android.test.ApplicationTestCase;
 
-/**
- * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
- */
 public class ApplicationTest extends ApplicationTestCase<Application> {
     public ApplicationTest() {
         super(Application.class);
+    }
+
+    @Override
+    protected void setUp() throws Exception {
+        super.setUp();
+    }
+
+    public void testThatDefaultPortWorks() {
+        assertEquals(App.getSettings().getPort(), 8079);
+    }
+
+    public void testThatDefaultHostWorks() {
+        assertEquals(App.getSettings().getHost(), "192.168.1.");
+    }
+
+    public void testThatPortSettingsWorks() {
+        App.getSettings().setPort(42);
+        assertEquals(App.getSettings().getPort(), 42);
+    }
+
+    public void testThatHostSettingWorks() {
+        App.getSettings().setHost("foo");
+        assertEquals(App.getSettings().getHost(), "foo");
     }
 }

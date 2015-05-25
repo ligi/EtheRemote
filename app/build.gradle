@@ -6,6 +6,8 @@ android {
 
     defaultConfig {
         applicationId "org.ligi.etheremote"
+        testApplicationId "org.ligi.etheremote.testing"
+
         minSdkVersion 7
         targetSdkVersion 22
         versionCode 1
