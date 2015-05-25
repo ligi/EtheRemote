@@ -9,7 +9,7 @@ import org.jetbrains.anko.textView
 import org.jetbrains.anko.verticalLayout
 
 
-public class MainActivity : EtheremoteActivity() {
+public class StatsActivity : EtheremoteActivity() {
 
     var blockNumberTV: TextView? = null
     var peerCountTV: TextView? = null

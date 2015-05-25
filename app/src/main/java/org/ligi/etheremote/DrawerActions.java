@@ -13,7 +13,7 @@ public class DrawerActions {
 
     @OnClick(R.id.drawer_stats)
     void statsClick() {
-        ctx.startActivity(new Intent(ctx, MainActivity.class));
+        ctx.startActivity(new Intent(ctx, StatsActivity.class));
     }
 
     @OnClick(R.id.drawer_wallet)
