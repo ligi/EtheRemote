@@ -15,7 +15,6 @@
               android:layout_height="wrap_content"
               android:id="@+id/host"
               android:hint="host"
-              android:inputType="number"
             />
 
     <EditText android:layout_width="match_parent"
