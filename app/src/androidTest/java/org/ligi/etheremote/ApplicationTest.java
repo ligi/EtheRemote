@@ -1,6 +1,7 @@
 package org.ligi.etheremote;
 
 import android.app.Application;
+import android.preference.PreferenceManager;
 import android.test.ApplicationTestCase;
 
 public class ApplicationTest extends ApplicationTestCase<Application> {
@@ -10,6 +11,7 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
 
     @Override
     protected void setUp() throws Exception {
+        PreferenceManager.getDefaultSharedPreferences(getContext()).edit().clear().commit();
         super.setUp();
     }
 
