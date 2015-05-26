@@ -14,7 +14,7 @@ public class EthereumCommunicator {
 
     private val rpcClient: JsonRpcClient
 
-    {
+    init {
         val client = OkHttpClient()
 
         rpcClient = JsonRpcClient(object : Transport {
