@@ -26,6 +26,10 @@ public class DrawerActions {
         ctx.startActivity(new Intent(ctx, ConnectionSettingsActivity.class));
     }
 
+    @OnClick(R.id.drawer_blocks)
+    void blocksClick() {
+        ctx.startActivity(new Intent(ctx, BlockListActivity.class));
+    }
 
     public DrawerActions(ViewGroup root) {
         ctx = root.getContext();
