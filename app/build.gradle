@@ -35,9 +35,9 @@ android {
 }
 
 dependencies {
-    compile 'org.jetbrains.anko:anko:0.6-15s'
-    compile 'org.jetbrains.kotlin:kotlin-stdlib:0.11.91.4'
-    compile 'org.jetbrains.kotlin:kotlin-runtime:0.11.91.4'
+    compile 'org.jetbrains.anko:anko:0.6.2-15s'
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:0.12.200'
+    compile 'org.jetbrains.kotlin:kotlin-runtime:0.12.200'
 
     compile('com.github.arteam:simple-json-rpc-client:0.5') {
         exclude group:"com.intellij"
@@ -45,9 +45,11 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.3.0'
     compile 'com.jakewharton:butterknife:6.1.0'
 
-    compile 'com.android.support:support-v4:22.1.1'
-    compile 'com.android.support:recyclerview-v7:22.1.1'
-    compile 'com.android.support:appcompat-v7:22.1.1'
-    compile 'com.android.support:cardview-v7:22.1.1'
+    compile 'com.android.support:support-v4:22.2.0'
+    compile 'com.android.support:recyclerview-v7:22.2.0'
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:cardview-v7:22.2.0'
+
+    compile 'com.android.support:design:22.2.0'
 
 }
