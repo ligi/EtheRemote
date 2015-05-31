@@ -16,6 +16,8 @@ public class StatsActivity : EtheremoteActivity() {
     var isMiningTV: TextView? = null
     var hashRateTV: TextView? = null
 
+    var running: Boolean = true;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -36,10 +38,15 @@ public class StatsActivity : EtheremoteActivity() {
             ethVersionTV = textView()
         }.setPadding(dip(8), dip(8), dip(8), dip(8))
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        running = true
         Thread(object : Runnable {
             override fun run() {
 
-                while (true) {
+                while (running) {
                     try {
                         val blockNumber = App.getCommunicator().getBlockNumber()
 
@@ -71,5 +78,10 @@ public class StatsActivity : EtheremoteActivity() {
         }).start()
 
 
+    }
+
+    override fun onPause() {
+        super.onPause()
+        running = false
     }
 }
