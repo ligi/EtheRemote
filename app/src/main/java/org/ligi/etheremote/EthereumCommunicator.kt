@@ -84,6 +84,10 @@ public class EthereumCommunicator {
         return getIntegerFromMethod("eth_hashrate")
     }
 
+    public fun getGasPrice(): Int? {
+        return getIntegerFromMethod("eth_gasPrice")
+    }
+
     public fun getAccounts(): List<String>? {
         return getStringFromMethod("eth_accounts")
     }
