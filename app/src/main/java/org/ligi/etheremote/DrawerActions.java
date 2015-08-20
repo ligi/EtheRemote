@@ -37,6 +37,6 @@ public class DrawerActions {
     }
 
     public void bind() {
-        ButterKnife.inject(this, rootView);
+        ButterKnife.bind(this, rootView);
     }
 }

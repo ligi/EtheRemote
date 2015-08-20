@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnTextChanged;
 
 
@@ -13,13 +13,13 @@ public class ConnectionSettingsActivity extends EtheremoteActivity {
 
     private Settings settings;
 
-    @InjectView(R.id.help)
+    @Bind(R.id.help)
     TextView textView;
 
-    @InjectView(R.id.host)
+    @Bind(R.id.host)
     TextView host;
 
-    @InjectView(R.id.port)
+    @Bind(R.id.port)
     TextView port;
 
 
@@ -44,7 +44,7 @@ public class ConnectionSettingsActivity extends EtheremoteActivity {
 
         setTitle(R.string.title_settings);
 
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         textView.setText(Html.fromHtml(getText(R.string.connection_help).toString()));
         textView.setMovementMethod(new LinkMovementMethod());

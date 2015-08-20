@@ -43,7 +43,7 @@ dependencies {
         exclude group:"com.intellij"
     }
     compile 'com.squareup.okhttp:okhttp:2.4.0'
-    compile 'com.jakewharton:butterknife:6.1.0'
+    compile 'com.jakewharton:butterknife:7.0.1'
 
     compile 'com.android.support:support-v4:23.0.0'
     compile 'com.android.support:recyclerview-v7:23.0.0'
