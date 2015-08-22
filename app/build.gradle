@@ -36,8 +36,8 @@ android {
 
 dependencies {
     compile 'org.jetbrains.anko:anko:0.6.2-15s'
-    compile 'org.jetbrains.kotlin:kotlin-stdlib:0.12.1218'
-    compile 'org.jetbrains.kotlin:kotlin-runtime:0.12.1218'
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:0.12.1230'
+    compile 'org.jetbrains.kotlin:kotlin-runtime:0.12.1230'
 
     compile('com.github.arteam:simple-json-rpc-client:0.5') {
         exclude group:"com.intellij"
