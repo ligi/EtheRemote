@@ -42,7 +42,7 @@ dependencies {
     compile('com.github.arteam:simple-json-rpc-client:0.5') {
         exclude group:"com.intellij"
     }
-    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile 'com.jakewharton:butterknife:7.0.1'
 
     compile 'com.android.support:support-v4:23.0.1'
