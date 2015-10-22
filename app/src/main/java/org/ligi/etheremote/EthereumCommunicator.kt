@@ -8,6 +8,7 @@ import com.squareup.okhttp.Request
 import com.squareup.okhttp.RequestBody
 import java.math.BigInteger
 import java.util.LinkedHashMap
+import java.lang.Long.parseLong
 
 public class EthereumCommunicator {
 
@@ -28,21 +29,21 @@ public class EthereumCommunicator {
     }
 
 
-    private fun getIntegerFromMethod(eth_blockNumber: String): Int? {
+    private fun getLongFromMethod(eth_blockNumber: String): Long? {
         try {
             val res = getStringFromMethod<String?>(eth_blockNumber)
-            return parseStringToInt(res)
+            return parseStringToLong(res)
         } catch (e: Exception) {
             return null
         }
 
     }
 
-    private fun parseStringToInt(res: String?): Int {
+    private fun parseStringToLong(res: String?): Long {
         if (res!!.startsWith("0x"))
-            return Integer.parseInt(res.replace("0x", ""), 16)
+            return parseLong(res.replace("0x", ""), 16)
         else
-            return Integer.parseInt(res)
+            return parseLong(res)
     }
 
     private fun parseStringToBigInt(res: String?): BigInteger {
@@ -63,29 +64,29 @@ public class EthereumCommunicator {
 
     }
 
-    public fun getBlockNumber(): Int? {
-        return getIntegerFromMethod("eth_blockNumber")
+    public fun getBlockNumber(): Long? {
+        return getLongFromMethod("eth_blockNumber")
     }
 
-    public fun getPeerCount(): Int? {
-        return getIntegerFromMethod("net_peerCount")
+    public fun getPeerCount(): Long? {
+        return getLongFromMethod("net_peerCount")
     }
 
 
-    public fun getEthVersion(): Int? {
-        return getIntegerFromMethod("eth_protocolVersion")
+    public fun getEthVersion(): Long? {
+        return getLongFromMethod("eth_protocolVersion")
     }
 
     public fun isMining(): Boolean? {
         return getStringFromMethod("eth_mining")
     }
 
-    public fun getHashRate(): Int? {
-        return getIntegerFromMethod("eth_hashrate")
+    public fun getHashRate(): Long? {
+        return getLongFromMethod("eth_hashrate")
     }
 
-    public fun getGasPrice(): Int? {
-        return getIntegerFromMethod("eth_gasPrice")
+    public fun getGasPrice(): Long? {
+        return getLongFromMethod("eth_gasPrice")
     }
 
     public fun getAccounts(): List<String>? {
