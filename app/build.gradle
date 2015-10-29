@@ -35,7 +35,7 @@ android {
 }
 
 dependencies {
-    compile 'org.jetbrains.anko:anko-sdk15:0.7.1'
+    compile 'org.jetbrains.anko:anko-sdk15:0.7.2'
     compile 'org.jetbrains.kotlin:kotlin-stdlib:0.14.451'
     compile 'org.jetbrains.kotlin:kotlin-runtime:0.14.451'
 
