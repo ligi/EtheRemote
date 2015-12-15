@@ -32,7 +32,7 @@ public class BlockListActivity : EtheremoteActivity() {
                     textChangedListener {
                         onTextChanged { text, start, before, count ->
                             try {
-                                val newBlock = Integer.parseInt(currentBlockTV!!.getText().toString())
+                                val newBlock = Integer.parseInt(currentBlockTV!!.text.toString())
                                 if (currentBlockNum != newBlock) {
                                     currentBlockNum = newBlock
                                     refresh()
@@ -60,8 +60,8 @@ public class BlockListActivity : EtheremoteActivity() {
 
     fun refresh() {
 
-        val selStart = currentBlockTV!!.getSelectionStart()
-        currentBlockTV!!.setText("${currentBlockNum}")
+        val selStart = currentBlockTV!!.selectionStart
+        currentBlockTV!!.setText("$currentBlockNum")
         currentBlockTV!!.setSelection(selStart)
 
         async {
@@ -71,16 +71,16 @@ public class BlockListActivity : EtheremoteActivity() {
             var stringToDisplay = ""
 
             keys.forEach { key ->
-                val value = infoMap.get(key)
+                val value = infoMap[key]
                 if (value is String)
-                    stringToDisplay += "${key}=${value}\n"
+                    stringToDisplay += "$key=$value\n"
                 else if (value is ArrayList<*>)
-                    stringToDisplay +=  "${key}=${value.size()}\n"
+                    stringToDisplay +=  "$key=${value.size()}\n"
 
             }
 
             runOnUiThread {
-                dataTV!!.setText(stringToDisplay)
+                dataTV!!.text = stringToDisplay
             }
         }
     }

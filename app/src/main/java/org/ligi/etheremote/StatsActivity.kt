@@ -23,9 +23,9 @@ public class StatsActivity : EtheremoteActivity() {
 
         setTitle(R.string.title_stats)
 
-        if (App.getSettings().getOnboardingState() == Settings.ONBOARDING_NONE) {
-            startActivity(Intent(this, javaClass<ConnectionSettingsActivity>()))
-            App.getSettings().setOnboardingState(Settings.ONBOARDING_SETTINGS)
+        if (App.getSettings().onboardingState == Settings.ONBOARDING_NONE) {
+            startActivity(Intent(this, ConnectionSettingsActivity().javaClass))
+            App.getSettings().onboardingState = Settings.ONBOARDING_SETTINGS
             finish()
             return
         }
@@ -52,7 +52,7 @@ public class StatsActivity : EtheremoteActivity() {
 
                         if (blockNumber == null) {
                             runOnUiThread {
-                                blockNumberTV!!.setText("cannot connect");
+                                blockNumberTV!!.text = "cannot connect";
                             }
                         } else {
                             val peerCount = App.getCommunicator().getPeerCount()
@@ -61,11 +61,11 @@ public class StatsActivity : EtheremoteActivity() {
                             val hashRate = App.getCommunicator().getHashRate()
 
                             runOnUiThread {
-                                blockNumberTV!!.setText("Block #${blockNumber}")
-                                peerCountTV!!.setText("Peers: ${peerCount}")
-                                ethVersionTV!!.setText("EthVersion: ${ethVersion}")
-                                isMiningTV!!.setText("isMining: ${isMining}")
-                                hashRateTV!!.setText("hashRate: ${hashRate} Hashes/s")
+                                blockNumberTV!!.text = "Block #$blockNumber"
+                                peerCountTV!!.text = "Peers: $peerCount"
+                                ethVersionTV!!.text = "EthVersion: $ethVersion"
+                                isMiningTV!!.text = "isMining: $isMining"
+                                hashRateTV!!.text = "hashRate: $hashRate Hashes/s"
                             }
                         }
 

@@ -17,14 +17,12 @@ public class EthereumCommunicator {
     init {
         val client = OkHttpClient()
 
-        rpcClient = JsonRpcClient(object : Transport {
-            override fun pass(request2: String): String {
-                val settings = App.getSettings()
-                val request = Request.Builder().url("http://${settings.getHost()}:${settings.getPort()}").post(RequestBody.create(MediaType.parse("text"), request2)).build()
+        rpcClient = JsonRpcClient(Transport { request2 ->
+            val settings = App.getSettings()
+            val request = Request.Builder().url("http://${settings.host}:${settings.port}").post(RequestBody.create(MediaType.parse("text"), request2)).build()
 
-                val response = client.newCall(request).execute()
-                return response.body().string()
-            }
+            val response = client.newCall(request).execute()
+            response.body().string()
         })
     }
 
@@ -106,16 +104,14 @@ public class EthereumCommunicator {
         try {
             onSuccess(rpcClient.createRequest().method("eth_sendTransaction").params(TransferJSON(from, to, amount)).id(1).execute() as String)
         } catch(e: Exception) {
-            onError(e.getMessage())
+            onError(e.message)
         }
     }
 
     inner class TransferJSON(from: String, to: String, amount: String) {
-
         var from: String = from
         var to: String = to
         var amount: String = amount
-
     }
 
 }

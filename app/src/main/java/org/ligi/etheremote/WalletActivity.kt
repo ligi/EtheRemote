@@ -48,8 +48,8 @@ public class WalletActivity : EtheremoteActivity() {
             button("Transfer") {
                 onClick {
                     Thread(Runnable {
-                        App.getCommunicator().sendTransaction(fromSpinner!!.getSelectedItem() as String, toSpinner!!.getSelectedItem() as String,
-                                amountTV!!.getText().toString(),
+                        App.getCommunicator().sendTransaction(fromSpinner!!.selectedItem as String, toSpinner!!.selectedItem as String,
+                                amountTV!!.text.toString(),
                                 onSuccess = { result ->
                                     runOnUiThread {
                                         AlertDialog.Builder(ctx).setMessage("success" + result).show()
@@ -67,34 +67,32 @@ public class WalletActivity : EtheremoteActivity() {
 
         }.setPadding(dip(8), dip(8), dip(8), dip(8))
 
-        Thread(object : Runnable {
-            override fun run() {
-                var hasData = false;
-                while (!hasData) {
-                    try {
-                        val accounts = App.getCommunicator().getAccounts()
-                        val balances = HashMap<String, BigInteger>()
+        Thread(Runnable {
+            var hasData = false;
+            while (!hasData) {
+                try {
+                    val accounts = App.getCommunicator().getAccounts()
+                    val balances = HashMap<String, BigInteger>()
 
-                        accounts?.forEach { account ->
-                            balances.put(account, App.getCommunicator().getBalance(account))
-                        }
-
-                        runOnUiThread {
-                            if (accounts == null) {
-                                accountsTV!!.setText("cannot get Accounts")
-                            } else {
-
-                                fromSpinner!!.setAdapter(AccountSpinner(accounts, balances))
-                                toSpinner!!.setAdapter(AccountSpinner(accounts, balances))
-                                hasData = true
-                            }
-                        }
-                        Thread.sleep(300)
-                    } catch (e: Exception) {
-                        Log.e("", "", e);
+                    accounts?.forEach { account ->
+                        balances.put(account, App.getCommunicator().getBalance(account))
                     }
 
+                    runOnUiThread {
+                        if (accounts == null) {
+                            accountsTV!!.text = "cannot get Accounts"
+                        } else {
+
+                            fromSpinner!!.adapter = AccountSpinner(accounts, balances)
+                            toSpinner!!.adapter = AccountSpinner(accounts, balances)
+                            hasData = true
+                        }
+                    }
+                    Thread.sleep(300)
+                } catch (e: Exception) {
+                    Log.e("", "", e);
                 }
+
             }
         }).start()
 
@@ -108,7 +106,7 @@ public class WalletActivity : EtheremoteActivity() {
         val balances = balances
 
         override fun getCount(): Int {
-            return accounts.size()
+            return accounts.size
         }
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
@@ -117,9 +115,9 @@ public class WalletActivity : EtheremoteActivity() {
 
         private fun getTV(position: Int, i: Int): TextView {
             val res = TextView(ctx)
-            res.setTextSize(i.toFloat())
-            val account = accounts.get(position)
-            res.setText(account.substring(2, 10) + "(${UnitConverter.humanize(balances.get(account))})")
+            res.textSize = i.toFloat()
+            val account = accounts[position]
+            res.text = account.substring(2, 10) + "(${UnitConverter.humanize(balances[account])})"
             return res
         }
 
@@ -128,7 +126,7 @@ public class WalletActivity : EtheremoteActivity() {
         }
 
         override fun getItem(position: Int): Any? {
-            return accounts.get(position)
+            return accounts[position]
         }
 
         override fun getItemId(position: Int): Long {
