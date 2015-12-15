@@ -7,11 +7,16 @@
 
     <string name="action_settings">Settings</string>
     <string name="connection_help" formatted="false"><![CDATA[
-    Start e.g. via `eth -b -j --json-rpc-port 8079`
-    <br/><br/>
-    You can either do this on a PC or a <a href="https://blog.ethereum.org/2015/05/14/announcing-e%CF%80-ethereum-on-raspberry-pi-programme/">Ξπ: Ξthereum on Raspberry Pi</a> Or if you want to run it on this mobile you might be able compile the c++ version via the <a href="https://developer.android.com/tools/sdk/ndk">Android NDK</a> or the go version <a href="https://godoc.org/golang.org/x/mobile/app"> this way</a>.
-    You just need the cli versions - as mist or alethzero might have nasty dependencies like QT <br/> <a href="http://ligi.de">Contact me</a> when you have a solution so I can link it from here or even better <a href="https://github.com/ligi/Etheremote">send a PullRequest</a>
-    <br/><br/>
+    <h1>Local Client:</h1>
+
+    There is one <a href="https://www.reddit.com/r/ethereum/comments/3wx09s/experimental_android_geth_library_archive/">experimental geth for android<a/> Install it and point this to host:127.0.0.1 port:8545
+    The c++ client compiled with the NDK is a second and ethereumj a third option for a local client
+
+    <h1>Remote client:</h1>
+
+    You can remote control ethereum on PC or a <a href="https://blog.ethereum.org/2015/05/14/announcing-e%CF%80-ethereum-on-raspberry-pi-programme/">Ξπ: Ξthereum on Raspberry Pi</a>
+
+    <h1>WTF?!?</h1>
     If you wonder what this is all about you might read <a href="https://github.com/ethereum/wiki/wiki/White-Paper">the white-paper</a> or <a href="https://www.youtube.com/watch?v=97ufCT6lQcY">watch this TED talk</a> and dig deeper later
     ]]>
     </string>
