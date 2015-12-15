@@ -6,9 +6,10 @@ import com.squareup.okhttp.MediaType
 import com.squareup.okhttp.OkHttpClient
 import com.squareup.okhttp.Request
 import com.squareup.okhttp.RequestBody
-import java.math.BigInteger
-import java.util.LinkedHashMap
+import org.ligi.etheremote.model.SyncState
 import java.lang.Long.parseLong
+import java.math.BigInteger
+import java.util.*
 
 public class EthereumCommunicator {
 
@@ -52,9 +53,10 @@ public class EthereumCommunicator {
     }
 
 
-    private fun <T> getStringFromMethod(eth_blockNumber: String): T? {
+    private fun <T> getStringFromMethod(method: String): T? {
         try {
-            val any = rpcClient.createRequest().method(eth_blockNumber).id(1).execute()
+
+            val any = rpcClient.createRequest().method(method).id(1).execute()
             return any as T;
         } catch (e: Exception) {
             return null
@@ -73,6 +75,18 @@ public class EthereumCommunicator {
 
     public fun getEthVersion(): Long? {
         return getLongFromMethod("eth_protocolVersion")
+    }
+
+
+    public fun getSyncState(): SyncState {
+        val foo: Map<String, String>? = getStringFromMethod("eth_syncing")
+
+        val res = SyncState(
+                currentBlock = parseStringToLong(foo!!["currentBlock"]),
+                highestBlock = parseStringToLong(foo["highestBlock"]),
+                startingBlock = parseStringToLong(foo["startingBlock"]))
+
+        return res
     }
 
     public fun isMining(): Boolean? {

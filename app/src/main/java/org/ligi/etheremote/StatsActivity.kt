@@ -15,6 +15,7 @@ public class StatsActivity : EtheremoteActivity() {
     var ethVersionTV: TextView? = null
     var isMiningTV: TextView? = null
     var hashRateTV: TextView? = null
+    var syncingTv: TextView? = null
 
     var running: Boolean = true;
 
@@ -36,6 +37,7 @@ public class StatsActivity : EtheremoteActivity() {
             isMiningTV = textView()
             hashRateTV = textView()
             ethVersionTV = textView()
+            syncingTv = textView()
         }.setPadding(dip(8), dip(8), dip(8), dip(8))
 
     }
@@ -59,13 +61,17 @@ public class StatsActivity : EtheremoteActivity() {
                             val ethVersion = App.getCommunicator().getEthVersion()
                             val isMining = App.getCommunicator().isMining()
                             val hashRate = App.getCommunicator().getHashRate()
+                            val sync = App.getCommunicator().getSyncState()
 
                             runOnUiThread {
-                                blockNumberTV!!.text = "Block #$blockNumber"
+                                //blockNumberTV!!.text = "Block #$blockNumber"
                                 peerCountTV!!.text = "Peers: $peerCount"
                                 ethVersionTV!!.text = "EthVersion: $ethVersion"
                                 isMiningTV!!.text = "isMining: $isMining"
                                 hashRateTV!!.text = "hashRate: $hashRate Hashes/s"
+                                syncingTv!!.text = "startingBlock: ${sync.startingBlock}" +
+                                        "\ncurrentBlock: ${sync.currentBlock}" +
+                                        "\nhighestBlock: ${sync.highestBlock}"
                             }
                         }
 
