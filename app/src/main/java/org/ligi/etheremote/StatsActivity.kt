@@ -45,41 +45,38 @@ public class StatsActivity : EtheremoteActivity() {
     override fun onResume() {
         super.onResume()
         running = true
-        Thread(object : Runnable {
-            override fun run() {
+        Thread(Runnable {
+            while (running) {
+                try {
+                    val blockNumber = App.getCommunicator().getBlockNumber()
 
-                while (running) {
-                    try {
-                        val blockNumber = App.getCommunicator().getBlockNumber()
-
-                        if (blockNumber == null) {
-                            runOnUiThread {
-                                blockNumberTV!!.text = "cannot connect";
-                            }
-                        } else {
-                            val peerCount = App.getCommunicator().getPeerCount()
-                            val ethVersion = App.getCommunicator().getEthVersion()
-                            val isMining = App.getCommunicator().isMining()
-                            val hashRate = App.getCommunicator().getHashRate()
-                            val sync = App.getCommunicator().getSyncState()
-
-                            runOnUiThread {
-                                //blockNumberTV!!.text = "Block #$blockNumber"
-                                peerCountTV!!.text = "Peers: $peerCount"
-                                ethVersionTV!!.text = "EthVersion: $ethVersion"
-                                isMiningTV!!.text = "isMining: $isMining"
-                                hashRateTV!!.text = "hashRate: $hashRate Hashes/s"
-                                syncingTv!!.text = "startingBlock: ${sync.startingBlock}" +
-                                        "\ncurrentBlock: ${sync.currentBlock}" +
-                                        "\nhighestBlock: ${sync.highestBlock}"
-                            }
+                    if (blockNumber == null) {
+                        runOnUiThread {
+                            blockNumberTV!!.text = "cannot connect";
                         }
+                    } else {
+                        val peerCount = App.getCommunicator().getPeerCount()
+                        val ethVersion = App.getCommunicator().getEthVersion()
+                        val isMining = App.getCommunicator().isMining()
+                        val hashRate = App.getCommunicator().getHashRate()
+                        val sync = App.getCommunicator().getSyncState()
 
-                    } catch (e: Exception) {
+                        runOnUiThread {
+                            //blockNumberTV!!.text = "Block #$blockNumber"
+                            peerCountTV!!.text = "Peers: $peerCount"
+                            ethVersionTV!!.text = "EthVersion: $ethVersion"
+                            isMiningTV!!.text = "isMining: $isMining"
+                            hashRateTV!!.text = "hashRate: $hashRate Hashes/s"
+                            syncingTv!!.text = "startingBlock: ${sync.startingBlock}" +
+                                    "\ncurrentBlock: ${sync.currentBlock}" +
+                                    "\nhighestBlock: ${sync.highestBlock}"
+                        }
                     }
-                    Thread.sleep(300);
 
+                } catch (e: Exception) {
                 }
+                Thread.sleep(300);
+
             }
         }).start()
 
