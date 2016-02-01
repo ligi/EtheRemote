@@ -39,10 +39,7 @@ public class EthereumCommunicator {
     }
 
     private fun parseStringToLong(res: String?): Long {
-        if (res!!.startsWith("0x"))
-            return parseLong(res.replace("0x", ""), 16)
-        else
-            return parseLong(res)
+        return java.lang.Long.decode(res);
     }
 
     private fun parseStringToBigInt(res: String?): BigInteger {
