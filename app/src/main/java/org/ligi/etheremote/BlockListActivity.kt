@@ -64,7 +64,7 @@ public class BlockListActivity : EtheremoteActivity() {
         currentBlockTV!!.setText("$currentBlockNum")
         currentBlockTV!!.setSelection(selStart)
 
-        async {
+        async() {
             var infoMap = App.getCommunicator().getBlockByNumber(currentBlockNum)
             val keys = infoMap.keySet()
 
