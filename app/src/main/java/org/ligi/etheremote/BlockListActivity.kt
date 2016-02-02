@@ -2,11 +2,10 @@ package org.ligi.etheremote
 
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
 import org.jetbrains.anko.*
-import java.util.ArrayList
+import java.util.*
 
 public class BlockListActivity : EtheremoteActivity() {
 
@@ -38,7 +37,8 @@ public class BlockListActivity : EtheremoteActivity() {
                                     refresh()
                                 }
 
-                            } catch (ignored: Exception) {}
+                            } catch (ignored: Exception) {
+                            }
                         }
                     }
                 }
@@ -75,7 +75,7 @@ public class BlockListActivity : EtheremoteActivity() {
                 if (value is String)
                     stringToDisplay += "$key=$value\n"
                 else if (value is ArrayList<*>)
-                    stringToDisplay +=  "$key=${value.size()}\n"
+                    stringToDisplay += "$key=${value.size()}\n"
 
             }
 
