@@ -2,12 +2,11 @@ package org.ligi.etheremote
 
 import com.github.arteam.simplejsonrpc.client.JsonRpcClient
 import com.github.arteam.simplejsonrpc.client.Transport
-import com.squareup.okhttp.MediaType
-import com.squareup.okhttp.OkHttpClient
-import com.squareup.okhttp.Request
-import com.squareup.okhttp.RequestBody
+import okhttp3.MediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
 import org.ligi.etheremote.model.SyncState
-import java.lang.Long.parseLong
 import java.math.BigInteger
 import java.util.*
 
